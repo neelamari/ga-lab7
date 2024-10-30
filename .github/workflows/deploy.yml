@@ -1,4 +1,4 @@
-name: Deployment (Container)
+name: Container
 on:
   push:
     branches:
@@ -6,13 +6,13 @@ on:
       - dev
 env:
   CACHE_KEY: node-deps
-  MONGODB_DB_NAME: gha-demo
+  MONGODB_DB_NAME: "gha-demo"
 jobs:
   test:
     environment: testing
     runs-on: ubuntu-latest
     env:
-      MONGODB_CONNECTION_PROTOCOL: mongodb+srv
+      #MONGODB_CONNECTION_PROTOCOL: mongodb+srv
       MONGODB_CLUSTER_ADDRESS: ${{ secrets.MONGODB_CLUSTER_ADDRESS }}
       MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
       MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
@@ -40,7 +40,7 @@ jobs:
     steps:
       - name: Output information
         env:
-          PORT: 3000
+          PORT: 8080
         run: |        
           echo "MONGODB_DB_NAME: $MONGODB_DB_NAME"
           echo "MONGODB_USERNAME: $MONGODB_USERNAME"
